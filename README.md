@@ -1,2 +1,2 @@
-# SpAn (SpikesAnalysis), a MATLAB application for analyzing electrophysiological spiking activities from in vivo recordings. 
+# SpAn (SpikesAnalysis), a MATLAB application for analyzing electrophysiological spiking activities from in vivo recordings
 It's linked to nigeLab https://github.com/m053m716/nigeLab to perform conversion of data from .rhs to .mat (data collected on RHS Stim/Recording System, https://intantech.com/RHS_system.html) and pre-processing of .mat data. Implemented the following analysis: (i) Instantaneous Firing Rate; (ii) Mean Firing Rate; (iii) Bootstrap; (iv) Local variation Revised (Shinomoto et al., 2009); (v) Population coupling (Okun et al., 2015). Plot of all the analysis and of Reaster Plot. You can perform single or group analysis.
