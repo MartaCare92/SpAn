@@ -63,16 +63,25 @@ for i= 1:nPhases
         end
         
         if SPK == 1
-            Res_folder_Spikes_Analysis=fullfile([Res_fold '/Analysis']);
+            if PTSD == 1
+                Res_folder_Spikes_Analysis=fullfile([Res_fold '/Analysis/PTSD']);
+            elseif SWTTEO == 1
+                Res_folder_Spikes_Analysis=fullfile([Res_fold '/Analysis/SWTTEO']);
+            end
             if exist(Res_folder_Spikes_Analysis,'dir')==0
                 mkdir(Res_folder_Spikes_Analysis)
             end
             if spk==1
-                Res_folder_Spikes_RFA=fullfile([Res_fold '/Plot/Raw/Spikes/RFA']);
+                if PTSD == 1
+                    Res_folder_Spikes_RFA=fullfile([Res_fold '/Plot/PTSD/Raw/Spikes/RFA']);
+                    Res_folder_Spikes_S1=fullfile([Res_fold '/Plot/PTSD/Raw/Spikes/S1']);
+                elseif SWTTEO == 1
+                    Res_folder_Spikes_RFA=fullfile([Res_fold '/Plot/SWTTEO/Raw/Spikes/RFA']);
+                    Res_folder_Spikes_S1=fullfile([Res_fold '/Plot/SWTTEO/Raw/Spikes/S1']);
+                end
                 if exist(Res_folder_Spikes_RFA,'dir')==0
                     mkdir(Res_folder_Spikes_RFA)
                 end
-                Res_folder_Spikes_S1=fullfile([Res_fold '/Plot/Raw/Spikes/S1']);
                 if exist(Res_folder_Spikes_S1,'dir')==0
                     mkdir(Res_folder_Spikes_S1)
                 end
@@ -118,7 +127,7 @@ for i= 1:nPhases
             end
             
             if i == nPhases
-                save(fullfile(Res_folder_Spikes_Analysis,'N_Spk_PTSD'),'N_Spk_S1','N_Spk_RFA','-v7.3')
+                save(fullfile(Res_folder_Spikes_Analysis,'N_Spk'),'N_Spk_S1','N_Spk_RFA','-v7.3')
             end
         end
         
@@ -178,7 +187,7 @@ for i= 1:nPhases
         end
         if i == nPhases(end)
             if mfr == 1 || lvr == 1 || boot == 1 || pc == 1
-                Main_Analysis_Plot(start_folder,Result_folder,bin_size,bin,numOfIterations,Duration_fix,SPK,MFR,LVR,BOOT,PC,YES,TS);
+                Main_Analysis_Plot(start_folder,Result_folder,exp_num,bin_size,bin,numOfIterations,Duration_fix,SPK,MFR,LVR,BOOT,PC,YES,PTSD,SWTTEO);
             end
         end
         
@@ -261,7 +270,6 @@ for i= 1:nPhases
         end
     end
 end
-close(h)
 d = waitbar(1,'Finishing...');
 pause(1)
 close(d)
